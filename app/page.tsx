@@ -108,6 +108,7 @@ export default function HomePage() {
               <div
                 key={index}
                 style={{
+
                   border: "1px solid #ccc",
                   borderRadius: "8px",
                   overflow: "hidden",

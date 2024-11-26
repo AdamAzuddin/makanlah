@@ -5,7 +5,7 @@ export default function MenuPage() {
         <main
             style={{
                 padding: "20px",
-                fontFamily: "sans-serif",
+                fontFamily: "Arial",
                 backgroundColor: "#f9f9f9",
                 minHeight: "100vh",
             }}
@@ -24,8 +24,10 @@ export default function MenuPage() {
 
             <div
                 style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+
+                    flexDirection: "column",
+                    display: "flex", // Flex container to align items horizontally
+                     // Vertically center content,
                     gap: "20px",
                 }}
             >
@@ -33,6 +35,7 @@ export default function MenuPage() {
                     <div
                         key={item.id}
                         style={{
+                            display: "flex",
                             background: "#fff",
                             borderRadius: "8px",
                             boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
@@ -43,9 +46,9 @@ export default function MenuPage() {
                         <Image
                             src={item.image}
                             alt={item.name}
-                            width={300}
-                            height={200}
-                            style={{ width: "100%", height: "auto" }}
+                            width={150}
+                            height={150}
+                            style={{ width: "150px", height: "150px", objectFit: "cover",}}
                         />
                         <div style={{ padding: "15px" }}>
                             <h3 style={{ color: "#333", fontSize: "20px", marginBottom: "8px" }}>
@@ -57,6 +60,15 @@ export default function MenuPage() {
                             <p style={{ color: "#FF6600", fontSize: "18px", fontWeight: "bold" }}>
                                 {item.price}
                             </p>
+                            <button
+                            style={{padding:"10px 15px",
+                            backgroundColor: "#FF6600",
+                            color: "#fff",
+                            borderRadius: "10px",
+                            cursor: "pointer",
+                            marginTop: "10px",
+                            fontWeight: "bold",}}
+                            >Add to Order</button>
                         </div>
                     </div>
                 ))}
@@ -69,14 +81,14 @@ const menuItems = [
     {
         id: 1,
         name: "Nasi Lemak",
-        description: "Traditional Malaysian dish with fragrant rice cooked in coconut milk.",
+        description: "Mak kau hijau",
         price: "RM 8.00",
         image: "/images/nasi_lemak.jpg",
     },
     {
         id: 2,
         name: "Roti Canai",
-        description: "Crispy and flaky flatbread served with delicious curry dips.",
+        description: "Made with love and sweat of mapla.",
         price: "RM 5.00",
         image: "/images/roti_canai.jpg",
     },
@@ -90,7 +102,7 @@ const menuItems = [
     {
         id: 4,
         name: "Teh Tarik",
-        description: "Classic Malaysian pulled tea with a frothy top.",
+        description: "Minum lu boss.",
         price: "RM 3.50",
         image: "/images/teh_tarik.jpg",
     },

@@ -64,7 +64,7 @@ export default function RootLayout({
                       fontWeight: "bold",
                   }}
               >
-                  Menu</a>
+                  Cart</a>
             <button
               style={{
                 padding: "8px 15px",
