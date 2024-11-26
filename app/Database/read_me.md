@@ -1,7 +1,7 @@
 First you need a myqsl driver
 
 ```angular2html
-npm install mysql
+>> npm install mysql
 ```
 type this in the terminal line
 
@@ -16,7 +16,7 @@ use one of these `demo` files by calling `node`.
 E.g
 
 ```
-node demo_create_db.js
+>> node demo_create_db.js
 ```
 in your terminal line
 
