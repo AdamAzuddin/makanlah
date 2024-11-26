@@ -55,6 +55,16 @@ export default function RootLayout({
           </div>
 
           <nav>
+              <a
+                  href="/menu/menu"
+                  style={{
+                      marginRight: "15px",
+                      textDecoration: "none",
+                      color: "#FF6600",
+                      fontWeight: "bold",
+                  }}
+              >
+                  Menu</a>
             <button
               style={{
                 padding: "8px 15px",
@@ -67,7 +77,9 @@ export default function RootLayout({
             >
               Sign In
             </button>
+
           </nav>
+
         </header>
 
         {children}
