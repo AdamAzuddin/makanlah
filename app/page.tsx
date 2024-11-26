@@ -5,89 +5,111 @@ export default function HomePage() {
     <div
       style={{
         fontFamily: "Arial, sans-serif",
-        maxWidth: "1200px",
         margin: "0 auto",
       }}
     >
-
       {/* Hero Section */}
       <section
         style={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center",
+          flexDirection: "column",
           background: "#FFD54F",
           padding: "20px",
           borderRadius: "8px",
           margin: "20px 0",
         }}
       >
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
           <h2
             style={{
-              fontSize: "36px",
+              fontSize: "54px",
               fontWeight: "bold",
               margin: "0 0 10px 0",
             }}
           >
-            Tapao and MakanLah!
+            Tapao <br /> and <br /> MakanLah!
           </h2>
-          <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <span>Wallet Balance:</span>
+          <Image
+            src="/burger.png"
+            alt="Burger Icon"
+            width={400}
+            height={400}
+            style={{ marginRight: "10px" }}
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <div style={{ display: "flex", flexDirection: "column" }}>
               <span style={{ fontWeight: "bold", fontSize: "18px" }}>
-                RM 100.00
+                Wallet Balance:
               </span>
-              <Image
-                src="/reload-wallet.svg" // Path to the SVG inside the public folder
-                alt="Reload wallet Icon"
-                width={20} // specify the width
-                height={20} // specify the height
-                style={{ marginRight: "10px" }}
-              />
-            </div>
 
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <Image
-                src="/location.svg" // Path to the SVG inside the public folder
-                alt="Location Icon"
-                width={20} // specify the width
-                height={20} // specify the height
-                style={{ marginRight: "10px" }}
-              />
-              <input
-                type="text"
-                placeholder="Your Location"
-                style={{
-                  padding: "10px",
-                  borderRadius: "8px",
-                  border: "1px solid #FFB74D", // Lighter border color for emphasis
-                  backgroundColor: "#FFFFFF", // Lighter background color
-                  fontSize: "16px", // Slightly larger text for better readability
-                  flex: "1",
-                  minWidth: "200px",
-                  opacity: 0.8
-                }}
-              />
+              <div style={{ display: "flex", gap: "10px" }}>
+                <span>RM 100.00</span>
+                <Image
+                  src="/reload-wallet.svg" // Path to the SVG inside the public folder
+                  alt="Reload wallet Icon"
+                  width={20} // specify the width
+                  height={20} // specify the height
+                  style={{ marginRight: "10px" }}
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div>
-          <p style={{ fontWeight: "bold", margin: "0 0 10px 0" }}>
-            EcoPoint: <span style={{ color: "#FF6600" }}>40 Point</span>
-          </p>
-          <button
-            style={{
-              padding: "8px 15px",
-              background: "#FF6600",
-              color: "#fff",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-          >
-            Redeem Now
-          </button>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Image
+              src="/location.svg" // Path to the SVG inside the public folder
+              alt="Location Icon"
+              width={20} // specify the width
+              height={20} // specify the height
+              style={{ marginRight: "10px" }}
+            />
+            <input
+              type="text"
+              placeholder="Your Location"
+              style={{
+                padding: "10px",
+                borderRadius: "8px",
+                border: "1px solid #FFB74D", // Lighter border color for emphasis
+                backgroundColor: "#FFFFFF", // Lighter background color
+                fontSize: "16px", // Slightly larger text for better readability
+                flex: "1",
+                minWidth: "30vw",
+                opacity: 0.8,
+              }}
+            />
+          </div>
+          <div style={{display:"flex", flexDirection:"column"}}>
+            <p style={{ fontWeight: "bold"}}>
+              EcoPoint:
+            </p>
+            <span style={{ color: "#FF6600" }}>40 Point</span>
+            <button
+              style={{
+                padding: "8px 15px",
+                background: "#FF6600",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
+              Redeem Now
+            </button>
+          </div>
         </div>
       </section>
       {/* Popular Items */}
