@@ -1,6 +1,15 @@
+"use client";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const LoginPage = () => {
+  const router = useRouter();
+  const handleButtonClick = (role: string) => {
+    console.log(`Navigating to ${role} login page`);
+    // Perform navigation or other actions here
+    router.push(`/login/${role}`);
+  };
+
   return (
     <div style={styles.container}>
       {/* Left Section with Login Options */}
@@ -18,9 +27,24 @@ const LoginPage = () => {
             </h1>
           </div>
           <div style={styles.buttons}>
-            <button style={styles.merchantButton}>Login As Merchant</button>
-            <button style={styles.customerButton}>Login As Customer</button>
-            <button style={styles.driverButton}>Login As Driver</button>
+            <button
+              style={styles.merchantButton}
+              onClick={() => handleButtonClick("merchant")}
+            >
+              Login As Merchant
+            </button>
+            <button
+              style={styles.customerButton}
+              onClick={() => handleButtonClick("customer")}
+            >
+              Login As Customer
+            </button>
+            <button
+              style={styles.driverButton}
+              onClick={() => handleButtonClick("driver")}
+            >
+              Login As Driver
+            </button>
           </div>
         </div>
       </div>
@@ -111,15 +135,6 @@ const styles: { [key: string]: React.CSSProperties } = {
   imageContainer: {
     width: "40%",
   },
-  /*image: {
-    maxWidth: "20%",
-    height: "auto",
-    borderRadius: "20px",
-    position: "absolute",
-    right: "0px",
-    bottom: "0px",
-    zIndex: "2",
-  },*/
 };
 
 export default LoginPage;
