@@ -34,6 +34,17 @@ const Header = () => {
       </div>
 
       <nav>
+        <a
+          href="/Cart"
+          style={{
+            marginRight: "15px",
+            textDecoration: "none",
+            color: "#FF6600",
+            fontWeight: "bold",
+          }}
+        >
+          Cart
+        </a>
         <button
           style={{
             padding: "8px 15px",
