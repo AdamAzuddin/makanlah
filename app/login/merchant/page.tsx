@@ -1,6 +1,8 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 const pageCust = () => {
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <div style={styles.container}>
       {/* Page Header */}
@@ -36,7 +38,17 @@ const pageCust = () => {
           </div>
 
           {/* Login Button */}
-          <button style={styles.button}>Login</button>
+          <button
+            style={
+              isHovered
+                ? { ...styles.button, ...styles.buttonHover }
+                : styles.button
+            }
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            Login
+          </button>
         </div>
       </div>
     </div>
@@ -60,6 +72,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     color: "black",
     marginBottom: "20px",
   },
+
   card: {
     backgroundColor: "#FFB800",
     padding: "40px",
@@ -67,11 +80,14 @@ const styles: { [key: string]: React.CSSProperties } = {
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     textAlign: "left",
     width: "300px",
+    position: "relative",
   },
   back: {
     backgroundColor: "#FFC700",
     padding: "50px",
     borderRadius: "20px",
+    position: "relative",
+    display: "flex",
   },
   inputGroup: {
     marginBottom: "20px",
@@ -100,6 +116,10 @@ const styles: { [key: string]: React.CSSProperties } = {
     border: "none",
     borderRadius: "5px",
     cursor: "pointer",
+    transition: "background-color 0.3s ease",
+  },
+  buttonHover: {
+    backgroundColor: "#3399FF",
   },
 };
 
