@@ -148,7 +148,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     textDecoration: "none",
   },
   paragraph: {
-    paddingTop: "20px",
+    paddingTop: "15px",
   },
 };
 
