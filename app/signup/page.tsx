@@ -85,7 +85,7 @@ const pageCust = () => {
           </div>
 
           {/* Login Button */}
-          <button style={styles.button}>Login</button>
+          <button style={styles.button}>Sign Up</button>
         </div>
       </div>
     </div>
