@@ -1,5 +1,5 @@
 "use client";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const LoginPage = () => {
@@ -45,6 +45,14 @@ const LoginPage = () => {
                         >
                             Login As Driver
                         </button>
+                    </div>
+                    <div>
+                        <p style={styles.paragraph}>
+                            Don't have an account?
+                            <a href="/signup" style={styles.blueLink}>
+                                Sign up here
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -134,6 +142,13 @@ const styles: { [key: string]: React.CSSProperties } = {
     },
     imageContainer: {
         width: "40%",
+    },
+    blueLink: {
+        color: "#0000EE",
+        textDecoration: "none",
+    },
+    paragraph: {
+        paddingTop: "21px",
     },
 };
 
