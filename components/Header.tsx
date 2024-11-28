@@ -46,6 +46,7 @@ const Header = () => {
           Cart
         </a>
         <button
+          onClick={() => router.push("/login")}
           style={{
             padding: "8px 15px",
             background: "#FF6600",
