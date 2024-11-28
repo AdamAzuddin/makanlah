@@ -7,8 +7,8 @@ function Dashboard(props) {
     return (
         <div className={styles.dashboard}>
             <header className={styles.header}>
-                <h1>Hello, Akram</h1>
-                <img className={styles.riderPicture} src="/rider.png" alt="rider "/>
+                <h1>Hello, {props.name}</h1>
+                <img className={styles.rider} src="/rider.png" alt="rider "/>
             </header>
 
             <main className={styles.content}>
@@ -27,7 +27,7 @@ function Dashboard(props) {
                     <Card
                         title="STATUS"
                         description={
-                            <span className={props.status ? styles.statusOn : styles.statusOff }>
+                            <span className={props.status ? styles.statusOn : styles.statusOff}>
                                 {props.status ? "Online" : "Offline"}
                             </span>
                         }
