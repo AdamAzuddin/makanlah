@@ -1,7 +1,8 @@
 'use client'
 import SearchPlaces from "@/components/SearchPlaces";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+
+import Link from "next/link";
 
 export default function HomePage() {
   const router = useRouter();
@@ -120,11 +121,12 @@ export default function HomePage() {
             gap: "20px",
           }}
         >
-          {["Cheese Burger", "Pancakes", "Waffles", "Croissant"].map(
+          {["Restaurant Alif", "KFC", "WaffleHouse", "CariMakan"].map(
             (item, index) => (
               <div
                 key={index}
                 style={{
+
                   border: "1px solid #ccc",
                   borderRadius: "8px",
                   overflow: "hidden",
@@ -139,6 +141,7 @@ export default function HomePage() {
                 <div style={{ padding: "10px" }}>
                   <h4 style={{ fontSize: "16px", margin: "10px 0" }}>{item}</h4>
                   <p style={{ fontSize: "14px", color: "#555" }}>RM 10.00</p>
+                  <Link href={"/menu"}>
                   <button
                     style={{
                       padding: "8px 15px",
@@ -150,7 +153,7 @@ export default function HomePage() {
                     }}
                   >
                     Order Now
-                  </button>
+                  </button></Link>
                 </div>
               </div>
             )
