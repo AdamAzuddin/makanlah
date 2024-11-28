@@ -10,7 +10,7 @@ const Create =()=>{
         e.preventDefault();
         const blog = { title, body, author};
 
-        fetch ('http://localhost:3000/admin_mysql',{
+        fetch ('http://localhost:3000/api/admin_mysql',{
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(blog)
@@ -52,4 +52,3 @@ const Create =()=>{
         </div>
     )
 }
-

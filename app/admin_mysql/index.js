@@ -13,6 +13,10 @@ app.get("/api", (req,res) =>{
     res.json({message: "Hi mum!"});
 });
 
+app.get("/api/testing",(req,res) =>{
+    res.json({message:"Testing 123"});
+});
+
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });

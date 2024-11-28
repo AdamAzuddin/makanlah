@@ -3,12 +3,12 @@
 ```angular2html
 cd demo_server
 ```
-will get me to C:\Users\User\WebstormProjects\makanlah\app\demo_server
+will get me to C:\Users\User\WebstormProjects\makanlah\page\demo_server
 
 ```angular2html
 cd ..
 ```
-will get me to C:\Users\User\WebstormProjects\makanlah\app
+will get me to C:\Users\User\WebstormProjects\makanlah\page
 
 make a package.json file with 
 ```angular2html
