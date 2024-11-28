@@ -1,4 +1,5 @@
 'use client'
+import SearchPlaces from "@/components/SearchPlaces";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -84,20 +85,7 @@ export default function HomePage() {
               height={20} // specify the height
               style={{ marginRight: "10px" }}
             />
-            <input
-              type="text"
-              placeholder="Your Location"
-              style={{
-                padding: "10px",
-                borderRadius: "8px",
-                border: "1px solid #FFB74D", // Lighter border color for emphasis
-                backgroundColor: "#FFFFFF", // Lighter background color
-                fontSize: "16px", // Slightly larger text for better readability
-                flex: "1",
-                minWidth: "30vw",
-                opacity: 0.8,
-              }}
-            />
+            <SearchPlaces/>
           </div>
           <div style={{display:"flex", flexDirection:"column"}}>
             <p style={{ fontWeight: "bold"}}>
