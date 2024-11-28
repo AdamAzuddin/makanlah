@@ -1,7 +1,15 @@
+'use client'
+import SearchPlaces from "@/components/SearchPlaces";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
+  const router = useRouter();
+
+  const handleButtonClick = (route: string) => {
+    router.push(`/${route}`);
+};
   return (
     <div
       style={{
@@ -58,7 +66,7 @@ export default function HomePage() {
                 Wallet Balance:
               </span>
 
-              <div style={{ display: "flex", gap: "10px" }}>
+              <div style={{ display: "flex", gap: "10px" }} onClick={()=>handleButtonClick("wallet")}>
                 <span>RM 100.00</span>
                 <Image
                   src="/reload-wallet.svg" // Path to the SVG inside the public folder
@@ -78,20 +86,7 @@ export default function HomePage() {
               height={20} // specify the height
               style={{ marginRight: "10px" }}
             />
-            <input
-              type="text"
-              placeholder="Your Location"
-              style={{
-                padding: "10px",
-                borderRadius: "8px",
-                border: "1px solid #FFB74D", // Lighter border color for emphasis
-                backgroundColor: "#FFFFFF", // Lighter background color
-                fontSize: "16px", // Slightly larger text for better readability
-                flex: "1",
-                minWidth: "30vw",
-                opacity: 0.8,
-              }}
-            />
+            <SearchPlaces/>
           </div>
           <div style={{display:"flex", flexDirection:"column"}}>
             <p style={{ fontWeight: "bold"}}>
@@ -107,6 +102,7 @@ export default function HomePage() {
                 borderRadius: "5px",
                 cursor: "pointer",
               }}
+              onClick={()=>handleButtonClick("redeem")}
             >
               Redeem Now
             </button>
@@ -125,11 +121,12 @@ export default function HomePage() {
             gap: "20px",
           }}
         >
-          {["Cheese Burger", "Pancakes", "Waffles", "Croissant"].map(
+          {["Restaurant Alif", "KFC", "WaffleHouse", "CariMakan"].map(
             (item, index) => (
               <div
                 key={index}
                 style={{
+
                   border: "1px solid #ccc",
                   borderRadius: "8px",
                   overflow: "hidden",
@@ -144,6 +141,7 @@ export default function HomePage() {
                 <div style={{ padding: "10px" }}>
                   <h4 style={{ fontSize: "16px", margin: "10px 0" }}>{item}</h4>
                   <p style={{ fontSize: "14px", color: "#555" }}>RM 10.00</p>
+                  <Link href={"/menu"}>
                   <button
                     style={{
                       padding: "8px 15px",
@@ -155,7 +153,7 @@ export default function HomePage() {
                     }}
                   >
                     Order Now
-                  </button>
+                  </button></Link>
                 </div>
               </div>
             )

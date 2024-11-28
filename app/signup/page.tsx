@@ -1,19 +1,61 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+const Customer = () => <div>Customer Component</div>;
+const Driver = () => <div>Driver Component</div>;
+const Merchant = () => <div>Merchant Component</div>;
 
 const pageCust = () => {
+  const [selectedComponent, setSelectedComponent] =
+    useState<string>("Customer");
+
+  const renderComponent = () => {
+    switch (selectedComponent) {
+      case "Customer":
+        return <Customer />;
+      case "Driver":
+        return <Driver />;
+      case "Merchant":
+        return <Merchant />;
+      default:
+        return null;
+    }
+  };
   return (
     <div style={styles.container}>
       {/* Page Header */}
-      <h1 style={styles.heading}>Sign In as Driver</h1>
+      <h1 style={styles.heading}>Sign Up</h1>
 
       {/* Login Card */}
       <div style={styles.back}>
         <div style={styles.card}>
+          <div style={styles.inputGroup}>
+            <label htmlFor="userType" style={styles.label}>
+              Sign up as :
+            </label>
+            <select
+              id="userType"
+              style={styles.input}
+              value={selectedComponent}
+              onChange={(e) => setSelectedComponent(e.target.value)}
+            >
+              <option value="Customer">Customer</option>
+              <option value="Driver">Driver</option>
+              <option value="Merchant">Merchant</option>
+            </select>
+          </div>
+          {/* Name Input */}
+          <div style={styles.inputGroup}>
+            <label htmlFor="name" style={styles.label}></label>
+            <input
+              type="name"
+              id="name"
+              placeholder="name"
+              style={styles.input}
+            />
+          </div>
           {/* Email Input */}
           <div style={styles.inputGroup}>
-            <label htmlFor="email" style={styles.label}>
-              Email:
-            </label>
+            <label htmlFor="email" style={styles.label}></label>
             <input
               type="email"
               id="email"
@@ -24,9 +66,7 @@ const pageCust = () => {
 
           {/* Password Input */}
           <div style={styles.inputGroup}>
-            <label htmlFor="password" style={styles.label}>
-              Password:
-            </label>
+            <label htmlFor="password" style={styles.label}></label>
             <input
               type="password"
               id="password"
@@ -34,9 +74,18 @@ const pageCust = () => {
               style={styles.input}
             />
           </div>
+          <div style={styles.inputGroup}>
+            <label htmlFor="confirm password" style={styles.label}></label>
+            <input
+              type="confirm password"
+              id="confirm password"
+              placeholder="confirm password"
+              style={styles.input}
+            />
+          </div>
 
           {/* Login Button */}
-          <button style={styles.button}>Login</button>
+          <button style={styles.button}>Sign Up</button>
         </div>
       </div>
     </div>
