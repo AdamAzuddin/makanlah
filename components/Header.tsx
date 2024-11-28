@@ -35,7 +35,7 @@ const Header = () => {
 
       <nav>
         <a
-          href="/Cart"
+          href="/checkout"
           style={{
             marginRight: "15px",
             textDecoration: "none",
@@ -43,7 +43,7 @@ const Header = () => {
             fontWeight: "bold",
           }}
         >
-          Cart
+          Checkout
         </a>
         <button
           onClick={() => router.push("/login")}
