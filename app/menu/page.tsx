@@ -6,6 +6,7 @@ import { useOrder } from '../context/order.tsx';
 import Image from 'next/image';
 
 // Menu items array
+
 const menuItems = [
     {
         id: 1,
@@ -14,6 +15,7 @@ const menuItems = [
         price: 8.00,
         image: "/images/nasi_lemak.jpg",
         quantity: 1,
+
     },
     {
         id: 2,
@@ -27,6 +29,7 @@ const menuItems = [
         id: 3,
         name: "Mee Goreng Mamak",
         description: "Spicy fried noodles with tofu, potatoes, and veggies.",
+
         price: 7.00,
         image: "/images/mee_goreng.jpg",
         quantity: 1,
