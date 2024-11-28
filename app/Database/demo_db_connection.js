@@ -6,7 +6,6 @@ var con = mysql.createConnection({
     user: 'root',
     password: 'localpassword',
     database: 'makanlah',
-    insecureAuth: true,
 });
 
 con.connect(function(err){

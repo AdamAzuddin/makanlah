@@ -5,13 +5,13 @@ import '../globals.css';
 import './css.css';
 
 // Public variables to store the input values
-let customerId = '';
-let customerName = '';
-let customerEmail = '';
-let customerPassword = '';
-let customerAddress = '';
-let customerRole = '';
-let customerMoney = '';
+let merchantId = '';
+let merchantName = '';
+let merchantEmail = '';
+let merchantPassword = '';
+let merchantAddress = '';
+let openingHours = '';
+let phoneNumber = '';
 
 const AdminPage: React.FC = () => {
     const [id, setId] = useState('');
@@ -19,28 +19,28 @@ const AdminPage: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [address, setAddress] = useState('');
-    const [role, setRole] = useState('');
-    const [money, setMoney] = useState('');
+    const [hours, setHours] = useState('');
+    const [number, setNumber] = useState('');
 
     const handleAddAll = () => {
-        customerId = id;
-        customerName = name;
-        customerEmail = email;
-        customerPassword = password;
-        customerAddress = address;
-        customerRole = role;
-        customerMoney = money;
+        merchantId = id;
+        merchantName = name;
+        merchantEmail = email;
+        merchantPassword = password;
+        merchantAddress = address;
+        openingHours = hours;
+        phoneNumber = number;
 
         console.log("Sending request...");
         axios
-            .post('/api/admin_sql',{
-                id: customerId,
-                name: customerName,
-                email: customerEmail,
-                password: customerPassword,
-                address: customerAddress,
-                role: customerRole,
-                money: customerMoney
+            .post('/api/admin_mysql_merchant',{
+                id: merchantId,
+                name: merchantName,
+                email: merchantEmail,
+                password: merchantPassword,
+                address: merchantAddress,
+                hours: openingHours,
+                number: phoneNumber
             })
             .then((response) => {
                 console.log('Variable sent to backend:', response.data);
@@ -52,38 +52,36 @@ const AdminPage: React.FC = () => {
 
     return (
         <div style={{padding: '20px'}}>
-            <h1>Admin Page</h1>
+            <h1>Merchant admin</h1>
             <div>
-                <label>Customer ID:</label>
+                <label>Merchant ID:</label>
                 <input type="text" value={id} onChange={(e) => setId(e.target.value)}/>
             </div>
             <div>
-                <label>Name:</label>
+                <label>Merchant Name:</label>
                 <input type="text" value={name} onChange={(e) => setName(e.target.value)}/>
             </div>
             <div>
-                <label>Email:</label>
+                <label>Merchant Email:</label>
                 <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}/>
             </div>
             <div>
-                <label>Password:</label>
+                <label>Merchant password:</label>
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <div>
-                <label>Address:</label>
+                <label>Merchant Address:</label>
                 <input type="text" value={address} onChange={(e) => setAddress(e.target.value)}/>
             </div>
             <div>
-                <label>Role : </label>
-                <input type="text" value={role} onChange={(e) => setRole(e.target.value)}/>
+                <label>Merchant opening hours (text) : </label>
+                <input type="text" value={hours} onChange={(e) => setHours(e.target.value)}/>
             </div>
             <div>
-                <label>Money:</label>
-                <input type="text" value={money} onChange={(e) => setMoney(e.target.value)}/>
+                <label>Merchant phone number:</label>
+                <input type="text" value={number} onChange={(e) => setNumber(e.target.value)}/>
             </div>
             <button onClick={handleAddAll}>press this</button>
-
-            <p>{customerId} {customerName} {customerEmail} {customerPassword} {customerAddress} {customerRole} {customerMoney}</p>
         </div>
     );
 };

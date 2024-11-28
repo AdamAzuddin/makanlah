@@ -18,17 +18,17 @@ export async function POST(request) {
         request
             .json()
             .then((body) => {
-                const { id, name, email, password, address, role, money } = body;
+                const { id, name, email, password, address, hours, number } = body;
 
-                console.log("Received data:", { id, name, email, password, address, role, money });
+                console.log("Received data:", { id, name, email, password, address, hours, number });
 
                 // SQL query with placeholders for security
                 const sql = `
-                    INSERT INTO customers 
-                    (customer_id, name, email, password, address, role_id, money) 
+                    INSERT INTO merchants 
+                    (merchant_id, name, email, password, address, opening_hours, phone_number) 
                     VALUES (?, ?, ?, ?, ?, ?, ?)
                 `;
-                const values = [id, name, email, password, address, role, money];
+                const values = [id, name, email, password, address, hours, number];
 
                 // Execute the query
                 pool.query(sql, values, (err, result) => {
