@@ -1,3 +1,38 @@
 .dashboard {
-    background-color: darkorange
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
+    background-color: orange
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.header p {
+    color: #555;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.riderPicture {
+    width: 100px;
+    height: 100px;
 }
