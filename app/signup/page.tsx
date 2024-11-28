@@ -1,12 +1,42 @@
 "use client";
 import React, { useState } from "react";
+import axios from "axios";
 const Customer = () => <div>Customer Component</div>;
 const Driver = () => <div>Driver Component</div>;
 const Merchant = () => <div>Merchant Component</div>;
 
 const pageCust = () => {
-  const [selectedComponent, setSelectedComponent] =
-    useState<string>("Customer");
+  const [selectedComponent, setSelectedComponent] = useState<string>("Customer");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+        [e.target.id]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) =>{
+    e.preventDefault();
+
+    // make the pass and confirm the same
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    try{
+      const response = await axios.post("api/signup", formData);
+      console.log(response.data);
+    }catch (error){
+      console.error(error);
+    }
+  };
 
   const renderComponent = () => {
     switch (selectedComponent) {
@@ -27,7 +57,7 @@ const pageCust = () => {
 
       {/* Login Card */}
       <div style={styles.back}>
-        <div style={styles.card}>
+        <form style={styles.card} onSubmit={handleSubmit}>
           <div style={styles.inputGroup}>
             <label htmlFor="userType" style={styles.label}>
               Sign up as :
@@ -47,12 +77,15 @@ const pageCust = () => {
           <div style={styles.inputGroup}>
             <label htmlFor="name" style={styles.label}></label>
             <input
-              type="name"
+              type="text"
               id="name"
               placeholder="name"
               style={styles.input}
+              value={formData.name} //backend
+              onChange = {handleChange} //backend
             />
           </div>
+
           {/* Email Input */}
           <div style={styles.inputGroup}>
             <label htmlFor="email" style={styles.label}></label>
@@ -61,6 +94,8 @@ const pageCust = () => {
               id="email"
               placeholder="email"
               style={styles.input}
+              value ={formData.email} //backend
+              onChange={handleChange} //backend
             />
           </div>
 
@@ -72,21 +107,27 @@ const pageCust = () => {
               id="password"
               placeholder="password"
               style={styles.input}
+              value = {formData.password} //backend
+              onChange={handleChange} //backend
             />
           </div>
+
+          {/* Confirm Password Input */}
           <div style={styles.inputGroup}>
-            <label htmlFor="confirm password" style={styles.label}></label>
+            <label htmlFor="password" style={styles.label}></label>
             <input
-              type="confirm password"
-              id="confirm password"
-              placeholder="confirm password"
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm password"
               style={styles.input}
+              value = {formData.confirmPassword} // backend
+              onChange={handleChange} // backend
             />
           </div>
 
           {/* Login Button */}
-          <button style={styles.button}>Sign Up</button>
-        </div>
+          <button type="submit" style={styles.button}>Sign Up</button>
+        </form>
       </div>
     </div>
   );
@@ -127,7 +168,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   label: {
     fontSize: "1rem",
-    color: "#000",
+    color: "#black",
     marginBottom: "8px",
     display: "block",
   },
