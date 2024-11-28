@@ -1,6 +1,10 @@
+'use client'
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 
 export default function Page() {
+    const router = useRouter()
   return (
     <div className="min-h-screen bg-yellow-400 flex flex-col items-center justify-start">
       {/* Top section: Title and Details on the left, Image on the right */}
@@ -58,7 +62,7 @@ export default function Page() {
             <p className="mr-4">
               <strong>Menu</strong>
             </p>
-            <button className="bg-green-500 text-white px-4 py-1 rounded-lg hover:bg-green-600">
+            <button className="bg-green-500 text-white px-4 py-1 rounded-lg hover:bg-green-600" onClick={()=>router.push("/dashboard/merchant/my-menu")}>
               View
             </button>
           </div>
