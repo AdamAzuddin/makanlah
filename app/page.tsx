@@ -1,7 +1,13 @@
+'use client'
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
+  const router = useRouter();
+
+  const handleButtonClick = (route: string) => {
+    router.push(`/${route}`);
+};
   return (
     <div
       style={{
@@ -58,7 +64,7 @@ export default function HomePage() {
                 Wallet Balance:
               </span>
 
-              <div style={{ display: "flex", gap: "10px" }}>
+              <div style={{ display: "flex", gap: "10px" }} onClick={()=>handleButtonClick("wallet")}>
                 <span>RM 100.00</span>
                 <Image
                   src="/reload-wallet.svg" // Path to the SVG inside the public folder
@@ -107,6 +113,7 @@ export default function HomePage() {
                 borderRadius: "5px",
                 cursor: "pointer",
               }}
+              onClick={()=>handleButtonClick("redeem")}
             >
               Redeem Now
             </button>
