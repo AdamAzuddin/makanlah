@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
 const HamburgerMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   const menuRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => {
@@ -61,7 +62,6 @@ const HamburgerMenu: React.FC = () => {
       </nav>
       {isOpen && <div className="overlay" onClick={closeMenu} />}
       <style jsx>{`
-
         .hamburger-icon {
           display: flex;
           flex-direction: column;
