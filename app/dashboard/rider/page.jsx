@@ -14,6 +14,15 @@ function Dashboard(props) {
             <main className={styles.content}>
                 <div className={styles.grid}>
                     <Card
+                        title="STATUS"
+                        description={
+                            <span className={props.status ? styles.statusOn : styles.statusOff}>
+                                {props.status ? "Online" : "Offline"}
+                            </span>
+                        }
+                        image="/signal-status.png"
+                    />
+                    <Card
                         title="YOUR EARNINGS"
                         description={
                             <>
@@ -23,15 +32,6 @@ function Dashboard(props) {
                             </>
                         }
                         image="/earnings.png"
-                    />
-                    <Card
-                        title="STATUS"
-                        description={
-                            <span className={props.status ? styles.statusOn : styles.statusOff}>
-                                {props.status ? "Online" : "Offline"}
-                            </span>
-                        }
-                        image="/signal-status.png"
                     />
                     <Card
                         title="INCOMING ORDERS"

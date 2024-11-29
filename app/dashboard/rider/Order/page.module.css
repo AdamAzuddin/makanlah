@@ -12,12 +12,13 @@
 
 .header h1 {
     font-size: 2rem;
-    font-weight: bold;
     margin: 0;
 }
 
 .body {
     padding-left: 10%;
+    display: flex;
+    flex-direction: row;
 }
 
 .body h3 {
@@ -30,8 +31,22 @@
     margin-bottom: 20px;
 }
 
-.details {
-    position: absolute;
-    left: 55%;
-    bottom: 370px;
+.body input {
+    opacity: 0.8;
+}
+
+.bodyRight {
+    display: block;
+    margin-left: 20%;
+}
+
+.orderDetails {
+    display: flex;
+    flex-direction: row;
+}
+
+.food {
+    width: 250px;
+    height: 150px;
+    border-radius: 10%;
 }
