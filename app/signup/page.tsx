@@ -26,7 +26,7 @@ const PageCust: React.FC = () => {
 
   const setRoleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    selectedComponent(value);
+    setSelectedComponent(value);
 
     switch (value) { // customer 0, driver 1, merchant 2
       case "Driver":
@@ -49,21 +49,19 @@ const PageCust: React.FC = () => {
     signUpPassword = password;
     // confirmPassword = confirmPassword;
 
-
-
-
     // make the pass and confirm the same
     if (password !== confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
+    alert("Sign up successful!");
 
     console.log("Sending request...");
     axios
         .post('/api/signup',{
             role: signUpRole,
             email: signupEmail,
-            name: signUp,
+            names: signUp,
             password: signUpPassword
         })
         .then((response) => {
@@ -102,8 +100,8 @@ const PageCust: React.FC = () => {
               id="userType"
               style={styles.input}
               value={selectedComponent}
-              // onChange={setRoleChange}
-              onChange = {(e) => setSelectedComponent(e.target.value)}
+              onChange={setRoleChange}
+              // onChange = {(e) => setSelectedComponent(e.target.value)}
             >
               <option value="Customer">Customer</option>
               <option value="Driver">Driver</option>

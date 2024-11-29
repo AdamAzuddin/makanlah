@@ -1,37 +1,75 @@
-import express from 'express';
-import {router} from "next/client";
+import { NextResponse } from "next/server";
+import mysql from "mysql";
 
-const PORT = 3000;
-const route = express.Router();
+// Database connection configuration
+const dbConfig = {
+    host: "localhost",
+    user: "root",
+    password: "localpassword",
+    database: "makanlah",
+};
 
-router.post('/api/signup', async(req,res) =>{
-    const {name,email, password} = req.body;
+// Create a reusable connection pool
+const pool = mysql.createPool(dbConfig);
 
-    try{
-        if (!name || !email || !password){
-            return res.status(400).json({error: 'Please fill all fields'});
-        }
-        if (password!= confirmPassword){
-            return res.status(400).json({error: 'Password do not match'});
-        }
-        const existingUser = await User.findOne({email});
-        if (existingUser){
-            return res.status(400).json({error: 'An account with this email already exists'});
-        }
-        // i am skipping hashing password for now
+export async function POST(request) {
+    return new Promise((resolve) => {
+        // Parse JSON body from the request
+        request
+            .json()
+            .then((body) => {
+                const { role, email, names, password } = body;
 
-        const newUser = new User({
-            name,
-            email,
-            password
-        });
+                console.log("Received data:", { role, email, names, password });
 
-        await newUser.save();
+                // SQL query with placeholders for security
+                let sql ="";
+                switch(role){
+                    case 0:
+                        sql = "INSERT INTO customers (name, email, password) VALUES (?, ?, ?)";
+                        break;
 
-        res.status(201).json({message: 'User created successfully'});
+                    case 1:
+                        sql = "INSERT INTO riders (name, email, password) VALUES (?, ?, ?)";
+                        break;
 
-    } catch (error){
-        console.error('Error during sign up: ',error);
-        res.status(500).json({message:'Server error.'});
-    }
-});
+                    case 2:
+                        sql = "INSERT INTO merchants (name, email, password) VALUES (?, ?, ?)";
+                        break;
+
+                    default:
+                        return res.status(400).json({ message: "Invalid role" });
+                }
+                // const sql = `INSERT INTO customers (name, email, password) VALUES (?, ?, ?)`;
+                const values = [names, email, password];
+
+                // Execute the query
+                pool.query(sql, values, (err, result) => {
+                    if (err) {
+                        console.error("Database error:", err);
+                        return resolve(
+                            NextResponse.json({ message: "Failed to insert data", error: err.message }, { status: 500 })
+                        );
+                    }
+
+                    console.log("1 record inserted, ID:", result.insertId);
+
+                    // Respond with a success message
+                    resolve(
+                        NextResponse.json({
+                            message: "Data inserted successfully",
+                            result: { insertId: result.insertId },
+                        }
+                        )
+                    );
+                });
+            }
+            )
+            .catch((err) => {
+                console.error("Request error:", err);
+                resolve(
+                    NextResponse.json({ message: "Invalid request body", error: err.message }, { status: 400 })
+                );
+            });
+    });
+}
