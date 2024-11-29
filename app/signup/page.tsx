@@ -1,42 +1,78 @@
 "use client";
 import React, { useState } from "react";
-import axios from "axios";
+import axios, {toFormData} from "axios";
+
 const Customer = () => <div>Customer Component</div>;
 const Driver = () => <div>Driver Component</div>;
 const Merchant = () => <div>Merchant Component</div>;
 
-const pageCust = () => {
-  const [selectedComponent, setSelectedComponent] = useState<string>("Customer");
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+// Public variables to store the input values
+let signUpRole ='';
+let signupEmail = '';
+let signUp = '';
+let signUpPassword = '';
+let confirmPassword = '';
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-        [e.target.id]: e.target.value,
-    });
+
+const PageCust: React.FC = () => {
+  const [selectedComponent, setSelectedComponent] = useState<string>("Customer");
+
+  const [role, setRole] = useState<number>(0);
+  const [email, setEmail] = useState('');
+  const [names, setNames] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+
+  const setRoleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    selectedComponent(value);
+
+    switch (value) { // customer 0, driver 1, merchant 2
+      case "Driver":
+        setRole(1);
+        break;
+      case "Merchant":
+        setRole(2);
+        break;
+      default:
+        setRole(0);
+        break;
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) =>{
     e.preventDefault();
+    signUpRole  = role;
+    signupEmail = email;
+    signUp = names;
+    signUpPassword = password;
+    // confirmPassword = confirmPassword;
+
+
+
 
     // make the pass and confirm the same
-    if (formData.password !== formData.confirmPassword) {
+    if (password !== confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
 
-    try{
-      const response = await axios.post("api/signup", formData);
-      console.log(response.data);
-    }catch (error){
-      console.error(error);
+    console.log("Sending request...");
+    axios
+        .post('/api/signup',{
+            role: signUpRole,
+            email: signupEmail,
+            name: signUp,
+            password: signUpPassword
+        })
+        .then((response) => {
+            console.log('Variable sent to backend:', response.data);
+        })
+        .catch((error) => {
+          console.error('Error sending variable to backend:', error);
+        })
     }
-  };
 
   const renderComponent = () => {
     switch (selectedComponent) {
@@ -66,7 +102,8 @@ const pageCust = () => {
               id="userType"
               style={styles.input}
               value={selectedComponent}
-              onChange={(e) => setSelectedComponent(e.target.value)}
+              // onChange={setRoleChange}
+              onChange = {(e) => setSelectedComponent(e.target.value)}
             >
               <option value="Customer">Customer</option>
               <option value="Driver">Driver</option>
@@ -81,8 +118,8 @@ const pageCust = () => {
               id="name"
               placeholder="name"
               style={styles.input}
-              value={formData.name} //backend
-              onChange = {handleChange} //backend
+              value={names} //backend
+              onChange = {(e) => setNames(e.target.value)} //backend
             />
           </div>
 
@@ -94,8 +131,8 @@ const pageCust = () => {
               id="email"
               placeholder="email"
               style={styles.input}
-              value ={formData.email} //backend
-              onChange={handleChange} //backend
+              value ={email} //backend
+              onChange={(e) => setEmail(e.target.value)} //backend
             />
           </div>
 
@@ -107,8 +144,8 @@ const pageCust = () => {
               id="password"
               placeholder="password"
               style={styles.input}
-              value = {formData.password} //backend
-              onChange={handleChange} //backend
+              value = {password} //backend
+              onChange={(e) => setPassword(e.target.value)} //backend
             />
           </div>
 
@@ -120,13 +157,13 @@ const pageCust = () => {
               id="confirmPassword"
               placeholder="Confirm password"
               style={styles.input}
-              value = {formData.confirmPassword} // backend
-              onChange={handleChange} // backend
+              value = {confirmPassword} // backend
+              onChange={(e)=> setConfirmPassword(e.target.value)} // backend
             />
           </div>
 
           {/* Login Button */}
-          <button type="submit" style={styles.button}>Sign Up</button>
+          <button type="submit" style={styles.button} onChange={handleSubmit}>Sign Up</button>
         </form>
       </div>
     </div>
@@ -193,4 +230,4 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 };
 
-export default pageCust;
+export default PageCust;
