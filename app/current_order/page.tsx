@@ -1,60 +1,48 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useOrder } from "../context/order";
 
-const page = () => {
+const Page = () => {
+  const [isOrderConfirmed, setIsOrderConfirmed] = useState(true);
+  const { order } = useOrder();
+  useEffect(() => {
+    // Check if the last element's name is "Confirmed" and set isOrderConfirmed to true
+    if (order.length > 0 && order[order.length - 1].name === "Confirmed") {
+      setIsOrderConfirmed(true);
+    }
+  }, [order]);
+  console.log(order);
   return (
     <div>
       <h1 className="heading">
         <b>Current Order</b>
       </h1>
       <p className="paragraph">today</p>
-      <ul className="order-details">
-        <li>
-          <img src="noodles.png" alt="delicious noodles" className="img" />
-          <div className="susun">
-            <div className="details">
-              <h2>Eightys Burger - Taman Putra Permai</h2>
-              <h2>
-                <b>RM12.00</b>
-              </h2>
-            </div>
-            <div className="date">
-              <h4>28 Nov 2024</h4>
-            </div>
-          </div>
-        </li>
-        <li>
-          <img src="noodles.png" alt="delicious noodles" className="img" />
-          <div className="susun">
-            <div className="details">
-              <h2>Eightys Burger - Taman Putra Permai</h2>
-              <h2>
-                <b>RM12.00</b>
-              </h2>
-            </div>
-            <div className="date">
-              <h4>28 Nov 2024</h4>
-            </div>
-          </div>
-        </li>
-        <li>
-          <img src="noodles.png" alt="delicious noodles" className="img" />
-          <div className="susun">
-            <div className="details">
-              <h2>Eightys Burger - Taman Putra Permai</h2>
-              <h2>
-                <b>RM12.00</b>
-              </h2>
-            </div>
-            <div className="date">
-              <h4>28 Nov 2024</h4>
-            </div>
-          </div>
-        </li>
-      </ul>
+      {isOrderConfirmed ? (
+        <ul className="order-details">
+          {order.map((item) => (
+            <li key={item.id}>
+              <img src={item.image} alt="delicious noodles" className="img" />
+              <div className="susun">
+                <div className="details">
+                  <h2>{item.name}</h2>
+                  <b>
+                    {item.quantity} x RM {item.price.toFixed(2)}
+                  </b>
+                </div>
+                <div className="date">
+                  <h4>28 Nov 2024</h4>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <></>
+      )}
       <style jsx>{`
         .heading {
-          font-size: 2.5rem; /* Adjust the size as needed */
+          font-size: 2.5rem;
           font-weight: bold;
           margin-bottom: 10px;
           margin-top: 30px;
@@ -63,58 +51,43 @@ const page = () => {
         .paragraph {
           padding-left: 30px;
           font-size: 1.5rem;
-          weight: light;
+          font-weight: light;
           opacity: 0.8;
         }
         .img {
-          width: 30%;
-          height: 30%;
-          border-radius: 20px;
-          
+          width: 100px;
+          height: 100px;
+          border-radius: 20%;
+          border: 1px solid #000;
+          margin-right: 15px;
         }
         .order-details {
           list-style-type: none;
           padding: 0;
-          display: flex;
-          align-items: center;
         }
         .order-details li {
-          padding: 30px;
           display: flex;
-          align-items: center;
-          border: 1px solid #ccc;
-          border-radius: 10px;
-          flex-direction: column;
+          align-items: flex-start;
+          margin-bottom: 5px;
         }
-        .order-details h2 {
-          margin-left: 10px;
-        }
-        .date {
-          margin-left: 10px;
+        .susun {
+          padding-top: 20px;
           display: flex;
           flex-direction: column;
-          opacity: 0.8;
         }
         .details {
           display: flex;
-          flex-direction: row;
-        }
-        .susun {
-          display: flex;
-          flex-direction: column;
-        }
-        .details b {
-          color: #f17228;
-          font-size: 1.5rem;
-          margin-left: 10px;
+          align-items: center;
         }
         .details h2 {
-          font-size: 1.5rem;
+          margin-right: 10px;
+        }
+        .date {
+          margin-top: 10px;
         }
       `}</style>
-      ;
     </div>
   );
 };
 
-export default page;
+export default Page;
