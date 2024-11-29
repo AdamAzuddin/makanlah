@@ -47,7 +47,6 @@ function Dashboard(props) {
                         description={
                             <>
                                 These are your recent transactions
-                                <button>Hello</button>
                             </>
                         }
                         image="/transaction.png"
