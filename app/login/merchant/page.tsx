@@ -1,6 +1,45 @@
-import React from "react";
+'use client';
+import React, { useState } from "react";
+import axios from 'axios';
 
 const pageCust = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+
+    const handleLogin = async () => {
+        console.log("Button pressed.")
+        if (!email || !password) {
+            setErrorMessage("Email and password are required.");
+            console.log("Email and password are required.");
+            return;
+        }
+
+        setErrorMessage("");
+
+
+        try {
+            const response = await axios
+                .post("/api/login/merchant", { email, password })
+                .then((response) => {
+                    console.log('Variable sent to backend:', response.data);
+                })
+                .catch((error) => {
+                    console.log('Error:', error.response?.data || error.message);
+                })
+
+                if(response )
+
+
+            ;
+            console.log("Login successful:", response.data);
+            // Redirect or handle success (e.g., navigate to dashboard)
+        } catch (error) {
+            console.error("Login error:", error.response?.data || error.message);
+            setErrorMessage(error.response?.data?.message || "Login failed. Please try again.");
+        }
+    };
+
     return (
         <div style={styles.container}>
             {/* Page Header */}
@@ -19,6 +58,8 @@ const pageCust = () => {
                             id="email"
                             placeholder="email"
                             style={styles.input}
+                            value={email} //backend
+                            onChange={(e) => setEmail(e.target.value)} //backend
                         />
                     </div>
 
@@ -32,11 +73,15 @@ const pageCust = () => {
                             id="password"
                             placeholder="password"
                             style={styles.input}
+                            value={password} //backend
+                            onChange = {(e) => setPassword(e.target.value)} //backend
                         />
                     </div>
 
                     {/* Login Button */}
-                    <button style={styles.button}>Login</button>
+                    <button style={styles.button} onClick={handleLogin}>Login</button>
+
+                    {errorMessage && (<div style={styles.error}>{errorMessage}</div>)}
                 </div>
             </div>
         </div>
@@ -101,6 +146,13 @@ const styles: { [key: string]: React.CSSProperties } = {
         borderRadius: "5px",
         cursor: "pointer",
     },
+
+    error:{
+        color:"red",
+        marginTop:"10px",
+        fontSize:"0.9rem",
+        fontWeight:"bold",
+    }
 };
 
 export default pageCust;
