@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { places } from "@/constants/places"; // Import the places data
+import { useRouter } from "next/navigation";
 
 interface Place {
   name: string;
@@ -12,6 +13,7 @@ interface Place {
 const SearchPlaces = () => {
   const [query, setQuery] = useState("");
   const [filteredPlaces, setFilteredPlaces] = useState<Place[]>([]);
+  const router = useRouter();
 
   // Handle the search input change
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +32,15 @@ const SearchPlaces = () => {
     console.log(
       `Clicked on ${place.name}, Latitude: ${place.latitude}, Longitude: ${place.longitude}`
     );
-    // You can add logic to perform further actions when an item is clicked
+
+    // Extract the college ID from the name using regex
+    const place_id = place.name.match(/\(([^)]+)\)/)![1];
+
+    // URL encode the name (replace spaces with '%20' or plus sign)
+    const encodedName = encodeURIComponent(place.name);
+
+    // Navigate to the dynamic route with both the college_id and name as a query parameter
+    router.push(`/college/${place_id}?name=${encodedName}`);
   };
 
   return (
