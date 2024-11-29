@@ -21,9 +21,13 @@
     flex-direction: row;
 }
 
+.body h1 {
+    font-size: larger;
+    margin-bottom: 40px;
+}
+
 .body h3 {
     font-size: large;
-    font-weight: bold;
     margin-bottom: 20px;
 }
 
@@ -32,6 +36,10 @@
 }
 
 .body input {
+    opacity: 0.8;
+}
+
+.body textarea {
     opacity: 0.8;
 }
 
@@ -48,5 +56,18 @@
 .food {
     width: 250px;
     height: 150px;
+    border-radius: 10%;
+}
+
+.acceptButton {
+    margin-left: 100px;
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
     border-radius: 10%;
 }

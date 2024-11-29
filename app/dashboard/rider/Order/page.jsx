@@ -9,8 +9,12 @@ function Order(props) {
             </header>
             <div className={styles.body}>
                 <div>
+                    <h1>
+                        <strong>Location:</strong><br/>
+                        <input readOnly type="text" placeholder={`${props.location}`}/>
+                    </h1>
                     <h3>
-                        <strong>Delivery earnings:</strong><br/>
+                        Delivery earnings:<br/>
                         <input readOnly type="text" placeholder={`RM ${props.earnings}`}/>
                     </h3>
                     <p>
@@ -29,10 +33,11 @@ function Order(props) {
                         <div style={{display: "block", marginLeft: 20, lineHeight: 1.2}}>
                             <p>Taco bell 10x</p>
                             <p>Notes to driver: </p>
-                            <input readOnly type="text" placeholder={props.notes}/>
+                            <textarea readOnly type="text" placeholder={props.notes}/>
                         </div>
                     </div>
-                    <button>Accept order</button>
+                    <br/>
+                    <button className={styles.acceptButton}>Accept order</button> 
                 </div>
             </div>
         </div>
