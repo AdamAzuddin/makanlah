@@ -20,10 +20,11 @@ export default function HomePage() {
 
   // Restaurants Data
   const ecoRestaurants = [
-    { name: "Restaurant A", description: "Eco-friendly choices", imgPath: "/restaurant_1.png" },
-    { name: "Restaurant B", description: "Sustainable dining experience", imgPath: "/restaurant_2.png" },
-    { name: "Restaurant C", description: "Green menu options", imgPath: "/restaurant_3.png" },
+    { name: "The Green Table", description: "Eco-friendly choices", imgPath: "/restaurant_1.png" },
+    { name: "Sustain Kitchen", description: "Sustainable dining experience", imgPath: "/restaurant_2.png" },
+    { name: "Verdant Bites", description: "Green menu options", imgPath: "/restaurant_3.png" },
   ];
+  
 
   return (
     <div style={{ fontFamily: "Arial, sans-serif", margin: "0 auto" }}>
