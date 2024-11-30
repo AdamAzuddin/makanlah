@@ -12,15 +12,15 @@ export default function Page() {
         {/* Left Column */}
         <div className="flex-1">
           <h1 className="text-5xl font-bold mb-4">Nabil Cafe</h1>
-          <div className="flex items-center gap-2 mb-2 text-3xl">
+          <div className="flex items-center gap-2 mb-2 text-lg  ">
             <span>🕒</span>
             <p>7:00 - 23:00</p>
           </div>
-          <div className="flex items-center gap-2 mb-2 text-3xl">
+          <div className="flex items-center gap-2 mb-2 text-lg">
             <span>📍</span>
             <p>5, Jalan Kearney, Sabah</p>
           </div>
-          <div className="flex items-center gap-2 text-3xl">
+          <div className="flex items-center gap-2 text-lg">
             <span>📞</span>
             <p>012-345 6789</p>
           </div>
@@ -28,7 +28,7 @@ export default function Page() {
 
         {/* Right Column */}
         <div>
-          <Image
+          <Image className="rounded-lg width-200"
             src="/nabil_cafe_img.png"
             alt="Nabil Cafe"
             width={200}
@@ -37,9 +37,9 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="flex flex-row gap-6">
+      <div className="flex flex-row gap-6 ">
         {/* First Box */}
-        <div className="mt-6 bg-[#fff1cc] p-10 flex-[1.5] text-xl">
+        <div className="mt-6 bg-[#fff1cc] p-10 flex-[1.5] text-xl rounded-lg">
           <p className="whitespace-nowrap">
             <strong>Total revenue:</strong> RM 9876
           </p>
@@ -50,14 +50,14 @@ export default function Page() {
             <p className="mr-4">
               <strong>Incoming orders:</strong> 5
             </p>
-            <button className="bg-green-500 text-white px-4 py-1 rounded-lg hover:bg-green-600">
+            <button className="bg-green-500 text-white px-4 py-1 rounded-lg hover:bg-green-600" onClick={()=>router.push("/dashboard/merchant/view-order")}>
               View
             </button>
           </div>
         </div>
 
         {/* Second Box */}
-        <div className="mt-6 bg-[#fff1cc] p-10 flex-[1.5] text-xl">
+        <div className="mt-6 bg-[#fff1cc] p-10 flex-[1.5] text-xl rounded-lg">
           <div className="flex justify-between items-center mt-2 whitespace-nowrap">
             <p className="mr-4">
               <strong>Menu</strong>
