@@ -1,15 +1,18 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./page.module.css";
+import { useRouter } from "next/navigation";
 
-function MerchantProfile(props) {
+function MerchantProfile() {
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
-    username: props.username,
-    email: props.email,
-    password: props.password,
-    address: props.address,
-    openingHours: props.openingHours,
-    phoneNumber: props.PhoneNumber,
+    username: "Nabil Cafe",
+    email: "nabilc@gmail.com",
+    password: "nabilcafeisgoated",
+    address: "No 5, Jalan Kearney, Sabah",
+    openingHours: "7:00 - 23:00",
+    phoneNumber: "012-345 6789",
   });
 
   const handleChange = (e) => {
@@ -23,6 +26,7 @@ function MerchantProfile(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Merchant profile updated:', formData);
+    router.push("/dashboard/merchant");
   };
 
   return (
