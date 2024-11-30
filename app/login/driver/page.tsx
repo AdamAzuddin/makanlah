@@ -1,6 +1,9 @@
+"use client";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const pageCust = () => {
+  const router = useRouter();
   return (
     <div style={styles.container}>
       {/* Page Header */}
@@ -36,7 +39,12 @@ const pageCust = () => {
           </div>
 
           {/* Login Button */}
-          <button style={styles.button}>Login</button>
+          <button
+            style={styles.button}
+            onClick={() => router.push("/dashboard/rider")}
+          >
+            Login
+          </button>
         </div>
       </div>
     </div>
