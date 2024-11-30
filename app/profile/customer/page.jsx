@@ -1,14 +1,17 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./page.module.css";
+import { useRouter } from "next/navigation";
 
-function CustomerProfile(props) {
+function CustomerProfile() {
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
-    username: props.username,
-    email: props.email,
-    password: props.password,
-    address: props.address,
-    balance: props.balance,
+    username: "Bob",
+    email: "bob@gmail.com",
+    password: "password123",
+    address: "No 5, Jalan Bob, Selangor",
+    balance: 600,
   });
 
   const handleChange = (e) => {
@@ -22,6 +25,7 @@ function CustomerProfile(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Customer profile updated:', formData);
+    router.push("/");
   };
 
   return (
@@ -73,7 +77,7 @@ function CustomerProfile(props) {
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="balance">Balance</label>
+          <label htmlFor="balance">Balance (RM)</label>
           <input
             type="number"
             id="balance"
